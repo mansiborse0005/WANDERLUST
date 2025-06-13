@@ -62,6 +62,11 @@ body {
     align-items: space-evenly;
 }
 
+.footer-link {
+    text-decoration: none;
+    color: black;
+}
+
 
 /* INDEX PAGE - CARDS */
 .listing-card {
