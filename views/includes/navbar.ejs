@@ -1,0 +1,128 @@
+<style>
+  @media (max-width: 767.98px) {
+    .navbar-collapse {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-nav .nav-link {
+      color: #333;
+    }
+
+    .nav-search {
+      display: none !important;
+    }
+  }
+
+ 
+  @media (min-width: 768px) {
+    .mobile-search-bar {
+      display: none; 
+    }
+  }
+
+  
+  .mobile-search-bar {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 56px; /* Below navbar */
+    z-index: 999;
+    padding: 0.5rem 1rem;
+  }
+
+  
+  .search-btn {
+    background-color: #fe424d;
+    color: white;
+    border-radius: 25px;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+  }
+
+  .search-btn:hover {
+    background-color: #fe424d;
+    color: white;
+  }
+
+  .search-btn i {
+    display: inline;
+    margin-right: 0.5rem;
+  }
+
+  .search-input {
+    border-radius: 25px;
+    width: 20rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .nav-icon {
+    display: flex;
+    flex-wrap: wrap;
+    color: #fe424d;
+    align-items: center;
+  }
+
+  .icon-name {
+    font-size: 1.3rem;
+    color: #fe424d;
+  }
+
+  .nav-search {
+    margin-left: 16rem !important;
+  }
+
+</style>
+
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand nav-icon" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+      <b><p class="icon-name mt-3 ms-2">wanderlust</p></b>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+   
+    <div class="navbar-nav nav-search d-none d-md-flex ms-auto me-3">
+      <form class="d-flex" role="search" method="GET" action="/listings/search">
+        <input class="form-control me-2 search-input" type="search" placeholder="Search destinations" name="q" value="<%= typeof query !== 'undefined' ? query : '' %>" />
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>Search
+        </button>
+      </form>
+    </div>
+
+ 
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings">Explore</a>
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <% if (!currUser) { %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+        <% if (currUser) { %>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
+          <a class="nav-link" href="/profile"><b><i class="fa-solid fa-circle-user nav-user"></i></b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="mobile-search-bar d-md-none sticky-top">
+  <form class="d-flex" role="search" method="GET" action="/listings/search">
+    <input class="form-control me-2 search-input" type="search" placeholder="Search destinations" name="q" value="<%= typeof query !== 'undefined' ? query : '' %>" />
+    <button class="btn search-btn" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>Search
+    </button>
+  </form>
+</div>
